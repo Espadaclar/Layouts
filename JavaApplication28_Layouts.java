@@ -18,8 +18,10 @@ public class JavaApplication28_Layouts extends JFrame{
         //instaciamos el objeoLamina y lo anadimos al frame.
         Lamina lamina = new Lamina();
         //para poder modificar el coportamiento por defecto, del Layout, se lo indicamos en el parametro del constructor.
-         FlowLayout laminaMod = new FlowLayout(FlowLayout.RIGHT);
-        lamina.setLayout(laminaMod);//---- asigna la modificacion a la lamina. 
+         //------- FlowLayout laminaMod = new FlowLayout(FlowLayout.RIGHT);
+        // --------FlowLayout laminaMod = new FlowLayout(FlowLayout.LEFT);
+          //FlowLayout laminaMod = new FlowLayout(FlowLayout.CENTER);
+        lamina.setLayout(new FlowLayout(FlowLayout.LEFT));//---- asigna la modificacion a la lamina. 
         add(lamina);
 
         setBounds(100, 100, 890, 450);
