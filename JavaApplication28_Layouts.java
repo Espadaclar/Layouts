@@ -33,7 +33,7 @@ public class JavaApplication28_Layouts extends JFrame{
         public Lamina() { 
             // 1º Para aplicar la disposicon o Layout 'BorderLayout()' instanciamos la clase directamente en 
             //    el mt setLayout(...), utilizando en este caso el constructor por defecto.
-            setLayout(new BorderLayout());
+            setLayout(new BorderLayout(23, 45));
             // 2º tenemos que indicar a nuestros botones en que zona han de ubicarse N, S, E, O o en el CENTRO
             //    el mt, add() de la clase JPanel, admite un 2º argumento, que es la posicion que utiliza el componente.
             add(new JButton("Azul"),  BorderLayout.NORTH);
