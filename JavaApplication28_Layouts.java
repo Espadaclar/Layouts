@@ -14,10 +14,18 @@ public class JavaApplication28_Layouts extends JFrame{
         marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public JavaApplication28_Layouts() {
-        //instaciamos el objeoLamina y lo anadimos al frame.
+    public JavaApplication28_Layouts() {        
+        //instaciamos el objeoLamina y el objeoLamina2 y lo anadimos al frame.
         Lamina lamina = new Lamina();
-        add(lamina);
+        Lamina2 lamina2 = new Lamina2();
+        
+        add(lamina2, BorderLayout.SOUTH);
+        add(lamina, BorderLayout.NORTH);
+        //instaciamos el objeoLamina y lo anadimos al frame.
+        
+        
+        
+        
 
         setBounds(100, 100, 890, 450);
         setTitle("Ventana para Layout");
@@ -28,8 +36,10 @@ public class JavaApplication28_Layouts extends JFrame{
         setIconImage(icono);        
     }
 
+    /**
+     * Crea una lamina utilizando un Layout de tipo BorderLayout.
+     */
     private class Lamina extends JPanel{
-
         public Lamina() { 
             // 1º Para aplicar la disposicon o Layout 'BorderLayout()' instanciamos la clase directamente en 
             //    el mt setLayout(...), utilizando en este caso el constructor por defecto.
@@ -39,22 +49,24 @@ public class JavaApplication28_Layouts extends JFrame{
             add(new JButton("Azul"),  BorderLayout.NORTH);
             add(new JButton("Rojo"), BorderLayout.SOUTH);
             add(new JButton("Amarillo"), BorderLayout.WEST);
-            add(new JButton("Verde"), BorderLayout.CENTER);
+            //add(new JButton("Verde"), BorderLayout.CENTER);
             add(new JButton("Anaranjado"), BorderLayout.EAST);  
-            //asigna la posicion de los objetos.
-            //setLayout(new FlowLayout(FlowLayout.CENTER, 80, 100));
-            // setLayout(new BorderLayout());
         }
-
+    } 
+    
+    /**
+     * Crea una 2º lamina utilizando un Layout de tipo FlowLayout.
+     */
+    private class Lamina2 extends JPanel{
+        public Lamina2() { 
+            //asigna la posicion de los objetos.
+            setLayout(new FlowLayout(FlowLayout.CENTER, 80, 100));
+            add(new JButton("Azul2"));
+            add(new JButton("Rojo2"));
+            add(new JButton("Amarillo2"));
+        }
     }    
-
 }
-
-
-
-
-
-
 
 
 
