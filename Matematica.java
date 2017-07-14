@@ -25,17 +25,23 @@ public class Matematica
         for(int i = num2; i > 0; i -- ){
             total += 1;
         }
-        System.out.println(num1 +" + " +num2+ " = " +total);
+        //System.out.println(num1 +" + " +num2+ " = " +total);
         return total;
     }
     
-    public void multiplica(int num1, int num2)
+    public int multiplica(int num1, int num2)
     {
         int total = 0;
         for(int i = num2; i > 0; i -- ){
             total += num1;
         }
-        System.out.println(num1 +" * " +num2+ " = " +total);
-        //return total;
+        //System.out.println(num1 +" * " +num2+ " = " +total);
+         return total;
+    }
+    
+    public double raizCuadrada(int num1)
+    {
+        double total = Math.sqrt(num1);
+         return total;
     }
 }

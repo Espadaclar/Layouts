@@ -11,9 +11,11 @@ public class Marco_Calculadora extends JFrame{
     private String cifra;//---------------ALMACENA LA CIFRA TECLEADA Y EL CARACTER DE LA OPERACION; '+', '*'
     private int valor1;// -----------------PRIMERA CIFRA ALMACENADA EN EL ARRAY num
     private int valor2;// -----------------SEGUNDA CIFRA ALMACENADA EN EL ARRAY num
+    private double valor3;
 
     private String[] cifra1;
     private JPanel lamina2;
+    private JButton pantalla ;// ------ muestra las operaciones de la calculadora.
 
     private ArrayList<JButton> botones;
     private Matematica operacion = new Matematica();
@@ -53,9 +55,9 @@ public class Marco_Calculadora extends JFrame{
 
         public Lamina() { 
             //asignaMOS una lamina AL MARCO  de disposicion o Layout BorderLayout()
-            setLayout(new BorderLayout());
-            //boton para mostrar resultado en la calculadora.
-            JButton pantalla = new JButton("0");
+            setLayout(new BorderLayout());// --EN LAS ZONAS DE ESTA LAMINA PEGAREMOS OTRAS LAMINAS
+            //boton para mostrar resultado en la calculadora, ASIGNADO EN LA ZONA NORTE DE LA LAMINA.
+            pantalla = new JButton("0");
             pantalla.setEnabled(false); ////----------  anula el boton.
             add(pantalla, BorderLayout.NORTH);//---- anade el boton a la lamina en la zona norte.
 
@@ -79,7 +81,7 @@ public class Marco_Calculadora extends JFrame{
             creaBoton("");
             creaBoton("");
             creaBoton("");
-            creaBoton("");
+            creaBoton("√");
 
             //recorre todos los botones, ' auxBoton.addActionListener(oyente);' pone cada boton a la escucha
             //la accion que realiza cada uno de ello esta codificada en el mt 'actionPerformed(ActionEvent e)'
@@ -101,7 +103,10 @@ public class Marco_Calculadora extends JFrame{
         botones.add(boton);
     }
 
-    private class OyenteLamina extends JPanel implements ActionListener{
+    /**
+     * Clase para gestionar los eventos
+     */
+    private class OyenteLamina implements ActionListener{
         private String[] num;// ---------------ALMACENA LA CIFRA TECLEADA SEPARADA POR EL CARACTER DE LA OPERACION; '+', '*'     
 
         public OyenteLamina() { 
@@ -109,34 +114,53 @@ public class Marco_Calculadora extends JFrame{
         }
 
         public void actionPerformed(ActionEvent e){
+            //PARA CAPTURAR EL TEXTO QUE SE GENERA AL PULSAR LOS  BOTONES.
             if(e.getActionCommand() != "=" && e.getActionCommand() != "AC"){// -- si se cumple la condicion
                 cifra += e.  getActionCommand();//--- se almacenan el valor de cada boton pulsado en la variable `'cifra'
+                pantalla.setText(cifra);//  ---- MUESTRA LA CIFRA DE LA OPERACION EN LA PANTALLA
             }else if(e.getActionCommand() == "="){// -- si se cumple la condicion  ¡¡¡¡¡¡¡
-                numerosTecleados();
+                pantalla.setText(cifra+ " = " +String.valueOf(numerosTecleados()));
             }
+            //             else if(e.getActionCommand() == "√"){// -- si se cumple la condicion  ¡¡¡¡¡¡¡
+            //                 pantalla.setText(cifra+ " = " +String.valueOf(numerosTecleados2()));
+            //             }
             else if(e.getActionCommand() == "AC"){// -- si se cumple la condicion  ¡¡¡¡¡¡¡
                 dispose();
                 System.out.println("Hasta la proxima. ¡¡¡¡");
             }
+            pantalla.setEnabled(false); ////----------ANULA NUEVAMENTE EL VALOR DEL BOTON PARA CREAR UNA NUEVA OPERACION.
         }
 
         /**
          * divide el String tecleado en nº enteros para operar con ellos.
          */
-        public void numerosTecleados(){
-
+        public int numerosTecleados(){
+            int total = 0;
             if(cifra.contains("+") ){
                 cifra1 =  cifra.split("\\+");
                 valor1 = Integer.parseInt(cifra1[0]);
                 valor2 = Integer.parseInt(cifra1[1]);
-                operacion.suma(valor1, valor2);// -----llamada al mt suma() de la cl Matematica
+                total = operacion.suma(valor1, valor2);// -----llamada al mt suma() de la cl Matematica
             }else if(cifra.contains("*") ){
                 cifra1 =  cifra.split("\\*");
                 valor1 = Integer.parseInt(cifra1[0]);
                 valor2 = Integer.parseInt(cifra1[1]);
-                operacion.multiplica(valor1, valor2);
+                total = operacion.multiplica(valor1, valor2);
             }
+
             cifra = "";
+            return total;
+        }
+
+        public double numerosTecleados2(){
+            double total = 0;
+            //if(cifra.contains("√") ){
+            cifra1 =  cifra.split("\\√");
+            valor1 = Integer.parseInt(cifra1[0]);
+            total = operacion.raizCuadrada(valor1);
+            //}
+            cifra = "";
+            return total;
         }
     }
 }
