@@ -25,15 +25,17 @@ public class Matematica
         for(int i = num2; i > 0; i -- ){
             total += 1;
         }
+        System.out.println(num1 +" + " +num2+ " = " +total);
         return total;
     }
     
-    public int multiplica(int num1, int num2)
+    public void multiplica(int num1, int num2)
     {
         int total = 0;
         for(int i = num2; i > 0; i -- ){
             total += num1;
         }
-        return total;
+        System.out.println(num1 +" * " +num2+ " = " +total);
+        //return total;
     }
 }
